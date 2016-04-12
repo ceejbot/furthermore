@@ -7,6 +7,6 @@ var argv = require('yargs')
 	.command(require('./commands/ls'))
 	.command(require('./commands/set'))
 	.command(require('./commands/del'))
-	.version(function() { return require('./package').version; })
-	.help('help')
+	.version()
+	.help()
 	.argv;
