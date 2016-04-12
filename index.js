@@ -1,6 +1,6 @@
 var
 	Etcd = require('node-etcd'),
-	rc = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, [])
+	rc   = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, [])
 	;
 
 var etcd = new Etcd(
@@ -29,6 +29,30 @@ exports.del = function del(key, callback)
 	{
 		if (err) return callback(err);
 		callback(null, reply.node);
+	});
+};
+
+exports.getMatch = function getMatch(target, callback)
+{
+	var dir = '/';
+	var lastSlash = target.lastIndexOf('/');
+	if (lastSlash >= 0)
+		dir = target.slice(0, lastSlash);
+	if (!target.match(/^\//)) target = '/' + target;
+	var pattern = new RegExp('^' + target.replace(/\*$/, '.*'));
+
+	etcd.get(dir, function(err, reply)
+	{
+		if (err) return callback(err);
+		if (!reply.node.nodes) return callback(null, []);
+
+		var results = [];
+		reply.node.nodes.forEach(function(n)
+		{
+			if (pattern.test(n.key)) results.push(n);
+		});
+
+		callback(null, results);
 	});
 };
 
