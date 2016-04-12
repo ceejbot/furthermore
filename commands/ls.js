@@ -13,6 +13,8 @@ function handler(argv)
 		if (err)
 			return console.log(chalk.red('error: ') + err.message);
 
+		var dirname = argv.dir + (/\/$/.test(argv.dir) ? '' : '/');
+		console.log(chalk.bold(dirname) + chalk.yellow(' directory listing:'));
 		console.log(columns(results));
 	});
 }
