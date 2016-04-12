@@ -1,0 +1,28 @@
+var
+	chalk = require('chalk'),
+	furthermore = require('../index')
+	;
+
+
+function builder()
+{
+
+}
+
+function handler(argv)
+{
+	furthermore.set(argv.key, argv.value, function(err, results)
+	{
+		if (err)
+			return console.log(chalk.red('error: ') + err.message);
+
+		console.log(results);
+	});
+}
+
+module.exports = {
+	command: 'set <key> <value>',
+	describe: 'set a key to a new value',
+	builder: builder,
+	handler: handler
+};
