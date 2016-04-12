@@ -8,6 +8,8 @@ function builder(yargs) {}
 
 function handler(argv)
 {
+	furthermore.setConfig(argv.env);
+
 	furthermore.ls(argv.dir, function(err, results)
 	{
 		if (err)

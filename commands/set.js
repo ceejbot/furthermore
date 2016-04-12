@@ -7,6 +7,7 @@ function builder() {}
 
 function handler(argv)
 {
+	furthermore.setConfig(argv.env);
 	furthermore.set(argv.key, argv.value, function(err, results)
 	{
 		if (err)

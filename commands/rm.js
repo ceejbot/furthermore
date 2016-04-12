@@ -7,6 +7,7 @@ function builder() {}
 
 function handler(argv)
 {
+	furthermore.setConfig(argv.env);
 	furthermore.del(argv.key, function(err, results)
 	{
 		if (err)
@@ -17,7 +18,7 @@ function handler(argv)
 }
 
 module.exports = {
-	command: 'del <key>',
+	command: 'rm <key>',
 	describe: 'remove a key',
 	builder: builder,
 	handler: handler

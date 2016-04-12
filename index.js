@@ -1,12 +1,18 @@
 var
 	Etcd = require('node-etcd'),
-	rc   = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, [])
+	rc   = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, []),
+	etcd
 	;
 
-var etcd = new Etcd(
-	Array.isArray(rc.hosts) ? rc.hosts : [rc.hosts],
-	rc.ssl ? true : undefined
-);
+
+exports.setConfig = function setConfig(env)
+{
+	var configset = rc[env] || rc;
+	etcd = new Etcd(
+		Array.isArray(configset.hosts) ? configset.hosts : [configset.hosts],
+		configset.ssl ? true : undefined
+	);
+};
 
 function cleanDir(dir, nodes)
 {

@@ -7,6 +7,7 @@ function builder() {}
 
 function handler(argv)
 {
+	furthermore.setConfig(argv.env);
 	furthermore.rmdir(argv.dir, function(err, results)
 	{
 		if (err)

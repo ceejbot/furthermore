@@ -2,6 +2,17 @@
 
 var yargs = require('yargs')
 	.usage('furthermore: manipulate keys on a remote etcd server')
+	.example('furthermore ls /deploys')
+	.example('furthermore mkdir /deploys/website')
+	.example('furthermore set /deploys/website/commit bfc8d32')
+	.example('furthermore get /deploys/website/commit')
+	.example('furthermore rm /deploys/website/commit')
+	.example('furthermore -e staging set canonical-host https://example.com')
+	.option('env', {
+		alias: 'e',
+		description: 'which etcd host group to use',
+		default: 'default'
+	})
 	.version(function() { return require('./package').version; })
 	.help('help');
 

@@ -23,6 +23,8 @@ function getMatch(key)
 
 function handler(argv)
 {
+	furthermore.setConfig(argv.env);
+
 	if (/\*$/.test(argv.key))
 		return getMatch(argv.key);
 
