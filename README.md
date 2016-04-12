@@ -2,7 +2,16 @@
 
 Interim censeo, Carthago delenda est. She is a menace to Rome.
 
-Uses your ``~/.renvrc` for config.
+`furthermore` is a command-line tool that manipulates keys in an etcd server or cluster somewhere over there. It's meant to be more convenient than `etcdctl`.
+
+It uses your ~/.renvrc` for config. That file looks like this:
+
+```ini
+hosts=my-etcd-host.example.com:443
+ssl=true
+```
+
+Usage:
 
 ```
 furthermore: manipulate keys on a remote etcd server

@@ -2,7 +2,7 @@
 
 var chalk = require('chalk');
 var argv = require('yargs')
-	.usage('usage here')
+	.usage('furthermore: manipulate keys on a remote etcd server')
 	.command(require('./commands/get'))
 	.command(require('./commands/ls'))
 	.command(require('./commands/set'))
