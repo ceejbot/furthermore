@@ -1,6 +1,6 @@
 var
 	Etcd      = require('node-etcd'),
-	rc   = require('rc')('renv',  {
+	rc   = require('rc')('etcd',  {
 			hosts: '127.0.0.1:4001',
 			ssl:   false
 		}, [])
@@ -14,6 +14,15 @@ var etcd = new Etcd(
 exports.get = function get(key, callback)
 {
 	etcd.get(key, { recursive: true }, function(err, reply)
+	{
+		if (err) return callback(err);
+		callback(null, reply.node);
+	});
+};
+
+exports.mkdir = function mkdir(dir, callback)
+{
+	etcd.mkdir(dir, { recursive: true }, function(err, reply)
 	{
 		if (err) return callback(err);
 		callback(null, reply.node);
@@ -40,13 +49,19 @@ exports.set = function set(key, value, callback)
 
 exports.ls = function ls(dir, callback)
 {
+	var patt = new RegExp('^\/?' + dir + '\/?');
+
 	etcd.get(dir, function(err, reply)
 	{
-		if (err) return callback(err);
+		if (err) return callback(err, []);
+		if (!reply.node.nodes) return callback(null, []);
+
 		var result = [];
 		reply.node.nodes.forEach(function(child)
 		{
-			result.push(child.key);
+			var k = child.key.replace(patt, '');
+			if (child.dir) k += '/';
+			result.push(k);
 		});
 		callback(null, result);
 	});

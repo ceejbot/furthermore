@@ -1,11 +1,10 @@
 var
-	chalk = require('chalk'),
+	chalk       = require('chalk'),
+	columns     = require('cli-columns'),
 	furthermore = require('../index')
 	;
 
-function builder(yargs)
-{
-}
+function builder(yargs) {}
 
 function handler(argv)
 {
@@ -14,7 +13,7 @@ function handler(argv)
 		if (err)
 			return console.log(chalk.red('error: ') + err.message);
 
-		console.log(results);
+		console.log(columns(results));
 	});
 }
 
