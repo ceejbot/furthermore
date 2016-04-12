@@ -8,8 +8,13 @@ var
 
 describe('furthermore', function()
 {
-	it('exports one function', function()
+	it('exports a bunch of functions', function()
 	{
-		furthermore.must.be.a.function();
+		var funcs = ['del', 'get', 'set', 'mkdir', 'rmdir', 'ls' ];
+		funcs.forEach(function(f)
+		{
+			furthermore.must.have.property(f);
+			furthermore[f].must.be.a.function();
+		});
 	});
 });
