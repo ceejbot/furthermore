@@ -7,7 +7,7 @@ function builder() {}
 
 function handler(argv)
 {
-	furthermore.mkdir(argv.dir, function(err, results)
+	furthermore.rmdir(argv.dir, function(err, results)
 	{
 		if (err)
 		{
@@ -15,13 +15,13 @@ function handler(argv)
 			process.exit(1);
 		}
 
-		console.log(chalk.bold(results.key + '/') + chalk.yellow(' ➜ created'));
+		console.log(chalk.bold(results.key + '/') + chalk.red(' ✘ removed'));
 	});
 }
 
 module.exports = {
-	command: 'mkdir <dir>',
-	describe: 'create the named directory, recursively',
+	command: 'rmdir <dir>',
+	describe: 'remove the named directory',
 	builder: builder,
 	handler: handler
 };

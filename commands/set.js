@@ -3,7 +3,7 @@ var
 	furthermore = require('../index')
 	;
 
-function builder(){ }
+function builder() {}
 
 function handler(argv)
 {
@@ -12,7 +12,7 @@ function handler(argv)
 		if (err)
 			return console.log(chalk.red('error: ') + err.message);
 
-		console.log(chalk.bold(results.key) + chalk.yellow(' := ') + chalk.blue(results.value));
+		console.log(chalk.bold(results.key) + chalk.yellow(' ➜ ') + chalk.blue(results.value));
 	});
 }
 

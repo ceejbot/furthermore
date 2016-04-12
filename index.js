@@ -1,9 +1,6 @@
 var
-	Etcd      = require('node-etcd'),
-	rc   = require('rc')('etcd',  {
-			hosts: '127.0.0.1:4001',
-			ssl:   false
-		}, [])
+	Etcd = require('node-etcd'),
+	rc = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, [])
 	;
 
 var etcd = new Etcd(
@@ -11,11 +8,37 @@ var etcd = new Etcd(
 	rc.ssl ? true : undefined
 );
 
+function cleanDir(dir, nodes)
+{
+	var patt = new RegExp('^\/?' + dir + '\/?');
+
+	var result = [];
+	nodes.forEach(function(child)
+	{
+		var k = child.key.replace(patt, '');
+		if (child.dir) k += '/';
+		result.push(k);
+	});
+
+	return result;
+}
+
+exports.del = function del(key, callback)
+{
+	etcd.del(key, function(err, reply)
+	{
+		if (err) return callback(err);
+		callback(null, reply.node);
+	});
+};
+
 exports.get = function get(key, callback)
 {
 	etcd.get(key, { recursive: true }, function(err, reply)
 	{
 		if (err) return callback(err);
+		if (reply.node.dir)
+			return callback(null, reply.node, cleanDir(key, reply.node.nodes));
 		callback(null, reply.node);
 	});
 };
@@ -29,9 +52,9 @@ exports.mkdir = function mkdir(dir, callback)
 	});
 };
 
-exports.del = function del(key, callback)
+exports.rmdir = function mkdir(dir, callback)
 {
-	etcd.del(key, function(err, reply)
+	etcd.rmdir(dir, function(err, reply)
 	{
 		if (err) return callback(err);
 		callback(null, reply.node);
@@ -49,20 +72,10 @@ exports.set = function set(key, value, callback)
 
 exports.ls = function ls(dir, callback)
 {
-	var patt = new RegExp('^\/?' + dir + '\/?');
-
 	etcd.get(dir, function(err, reply)
 	{
 		if (err) return callback(err, []);
 		if (!reply.node.nodes) return callback(null, []);
-
-		var result = [];
-		reply.node.nodes.forEach(function(child)
-		{
-			var k = child.key.replace(patt, '');
-			if (child.dir) k += '/';
-			result.push(k);
-		});
-		callback(null, result);
+		callback(null, cleanDir(dir, reply.node.nodes));
 	});
 };

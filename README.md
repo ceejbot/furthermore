@@ -17,10 +17,12 @@ Usage:
 furthermore: manipulate keys on a remote etcd server
 
 Commands:
+  del <key>          remove a key
   get <key>          get the value for a key
   ls <dir>           get a directory listing
+  mkdir <dir>        create the named directory, recursively
+  rmdir <dir>        remove the named directory
   set <key> <value>  set a key to a new value
-  del <key>          remove a key
 
 Options:
   --version  Show version number                                       [boolean]

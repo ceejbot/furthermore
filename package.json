@@ -38,6 +38,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "nyc mocha -R spec"
+    "test": "nyc mocha -R spec",
+    "travis": "npm run lint && npm test"
   }
 }
