@@ -8,7 +8,7 @@ function builder() {}
 function handler(argv)
 {
 	furthermore.setConfig(argv.env);
-	furthermore.del(argv.key, function(err, results)
+	furthermore.rm(argv.key, function(err, results)
 	{
 		if (err)
 			return console.log(chalk.red('error: ') + err.message);

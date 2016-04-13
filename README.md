@@ -7,7 +7,7 @@ Interim censeo, Carthago delenda est. She is a menace to Rome.
 
 `furthermore` is a command-line tool that manipulates keys in an [etcd](https://github.com/coreos/etcd) server or cluster somewhere over there. It's meant to be more convenient than `etcdctl`. `npm install -g furthermore` to begin setting keys.
 
-It uses a file named ~/.etcdrc` for config. That file looks like this:
+It uses a file named `~/.etcdrc` for config. That file looks like this:
 
 ```ini
 [default]

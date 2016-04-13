@@ -4,7 +4,6 @@ var
 	etcd
 	;
 
-
 exports.setConfig = function setConfig(env)
 {
 	var configset = rc[env] || rc;
@@ -12,6 +11,7 @@ exports.setConfig = function setConfig(env)
 		Array.isArray(configset.hosts) ? configset.hosts : [configset.hosts],
 		configset.ssl ? true : undefined
 	);
+	exports.etcd = etcd;
 };
 
 function cleanDir(dir, nodes)
@@ -29,7 +29,7 @@ function cleanDir(dir, nodes)
 	return result;
 }
 
-exports.del = function del(key, callback)
+exports.rm = function del(key, callback)
 {
 	etcd.del(key, function(err, reply)
 	{
@@ -82,7 +82,7 @@ exports.mkdir = function mkdir(dir, callback)
 	});
 };
 
-exports.rmdir = function mkdir(dir, callback)
+exports.rmdir = function rmdir(dir, callback)
 {
 	etcd.rmdir(dir, function(err, reply)
 	{
