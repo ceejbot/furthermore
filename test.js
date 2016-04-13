@@ -96,11 +96,11 @@ describe('furthermore', function()
 	{
 		var mock = {
 			action: 'delete',
-  			node: {
+			node: {
 				key: '/foo/bar',
-			     dir: true,
-			     modifiedIndex: 347,
-			     createdIndex: 346
+				dir: true,
+				modifiedIndex: 347,
+				createdIndex: 346
 			},
 			prevNode: {
 				key: '/foo/bar',
