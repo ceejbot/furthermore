@@ -13,8 +13,8 @@ var yargs = require('yargs')
 		description: 'which etcd host group to use',
 		default: 'default'
 	})
-	.version(function() { return require('./package').version; })
-	.help('help');
+	.version()
+	.help()
 
 var requireDirectory = require('require-directory'),
 	commands = requireDirectory(module, './commands');
