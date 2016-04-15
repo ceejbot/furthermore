@@ -15,6 +15,7 @@ var yargs = require('yargs')
 	})
 	.version()
 	.help()
+	;
 
 var requireDirectory = require('require-directory'),
 	commands = requireDirectory(module, './commands');
