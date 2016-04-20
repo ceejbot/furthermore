@@ -14,10 +14,13 @@ function getMatch(key)
 			return console.log(chalk.red('error: ') + err.message);
 
 		console.log(chalk.bold(key) + chalk.yellow(' matches:'));
+		var lines = [];
 		results.forEach(function(r)
 		{
-			console.log(chalk.bold(r.key) + chalk.yellow(' == ') + chalk.blue(r.value));
+			lines.push(chalk.bold(r.key) + chalk.yellow(' == ') + chalk.blue(r.value));
 		});
+		lines.sort();
+		console.log(lines.join('\n'));
 	});
 }
 
