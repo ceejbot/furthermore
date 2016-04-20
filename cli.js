@@ -6,6 +6,7 @@ var yargs = require('yargs')
 	.example('furthermore mkdir /deploys/website')
 	.example('furthermore set /deploys/website/commit bfc8d32')
 	.example('furthermore get /deploys/website/commit')
+	.example('furthermore get "//deploys/w.*/"')
 	.example('furthermore rm /deploys/website/commit')
 	.example('furthermore -e staging set canonical-host https://example.com')
 	.option('env', {

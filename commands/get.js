@@ -8,10 +8,18 @@ function builder() {}
 
 function getMatch(key)
 {
+	key = key.replace(/^\/(.*)\/$/, '$1');
+
 	furthermore.getMatch(key, function(err, results)
 	{
 		if (err)
 			return console.log(chalk.red('error: ') + err.message);
+
+		if (!Object.keys(results).length)
+		{
+			console.log(chalk.bold(key) + chalk.yellow(' has no matches.'));
+			return;
+		}
 
 		console.log(chalk.bold(key) + chalk.yellow(' matches:'));
 		var lines = [];
@@ -28,7 +36,7 @@ function handler(argv)
 {
 	furthermore.setConfig(argv.env);
 
-	if (/\*$/.test(argv.key))
+	if (/^\/.*\/$/.test(argv.key))
 		return getMatch(argv.key);
 
 	furthermore.get(argv.key, function(err, results, children)
@@ -49,7 +57,7 @@ function handler(argv)
 
 module.exports = {
 	command: 'get <key>',
-	describe: 'get the value for a key; end the key with * to see all keys that start with the prefix',
+	describe: 'get the value for a key; wrap the key in // to treat it as a regexp',
 	builder: builder,
 	handler: handler
 };

@@ -31,8 +31,7 @@ Usage:
 furthermore: manipulate keys on a remote etcd server
 
 Commands:
-  get <key>          get the value for a key; end the key with * to see all keys
-                     that start with the prefix
+  get <key>          get the value for a key; wrap the key in // to treat it as a regexp
   ls <dir>           get a directory listing
   mkdir <dir>        create the named directory, recursively
   rm <key>           remove a key
@@ -49,6 +48,7 @@ Examples:
   furthermore mkdir /deploys/website
   furthermore set /deploys/website/commit bfc8d32
   furthermore get /deploys/website/commit
+  furthermore get "/foo/b.*/"
   furthermore rm /deploys/website/commit
   furthermore -e staging set canonical-host https://example.com
 ```
