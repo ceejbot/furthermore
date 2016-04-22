@@ -31,12 +31,14 @@ Usage:
 furthermore: manipulate keys on a remote etcd server
 
 Commands:
-  get <key>          get the value for a key; wrap the key in // to treat it as a regexp
-  ls <dir>           get a directory listing
-  mkdir <dir>        create the named directory, recursively
-  rm <key>           remove a key
-  rmdir <dir>        remove the named directory
-  set <key> <value>  set a key to a new value
+get <key>          get the value for a key; wrap the key in // to treat it as a regexp
+import <json>      import key/value pairs from a json file & set them in etcd
+ls <dir>           get a directory listing
+mkdir <dir>        create the named directory, recursively
+reconcile <json>   report how the keys in the given json file differ from the keys in etcd
+rm <key>           remove a key
+rmdir <dir>        remove the named directory
+set <key> <value>  set a key to a new value
 
 Options:
   --env, -e  which etcd host group to use                   [default: "default"]
