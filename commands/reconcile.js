@@ -34,9 +34,9 @@ function handler(argv)
 
 			Object.keys(input).forEach(function(k)
 			{
-				if (current[k])
+				if (current.hasOwnProperty(k))
 				{
-					if (current[k] === input[k])
+					if (current[k] === String(input[k]))
 						delete input[k];
 					else
 						different.push(k);
@@ -46,12 +46,32 @@ function handler(argv)
 					missing.push(k);
 			});
 
-			console.log(chalk.red('missing values:'));
-			console.log(columns(missing.sort()));
-			console.log(chalk.blue('\nkeys with differing values:'));
-			console.log(columns(different.sort()));
-			console.log(chalk.yellow('\nextra values:'));
-			console.log(columns(Object.keys(current).sort()));
+			var diffs = false;
+			if (missing.length)
+			{
+				console.log(chalk.red('missing values:'));
+				console.log(columns(missing.sort()));
+				diffs = true;
+			}
+
+			if (different.length)
+			{
+				console.log('');
+				console.log(chalk.blue('keys with differing values:'));
+				console.log(columns(different.sort()));
+				diffs = true;
+			}
+
+			if (Object.keys(current).length)
+			{
+				console.log('');
+				console.log(chalk.yellow('extra values:'));
+				console.log(columns(Object.keys(current).sort()));
+				diffs = true;
+			}
+
+			if (!diffs)
+				console.log(chalk.green('The input values and etcd are identical.'));
 		});
 	});
 }
