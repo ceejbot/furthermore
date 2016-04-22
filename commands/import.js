@@ -1,6 +1,5 @@
 var
 	chalk       = require('chalk'),
-	columns     = require('cli-columns'),
 	fs          = require('fs'),
 	furthermore = require('../index')
 	;
