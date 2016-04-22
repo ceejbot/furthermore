@@ -12,7 +12,7 @@ describe('furthermore', function()
 {
 	it('exports a bunch of functions', function()
 	{
-		var funcs = ['rm', 'get', 'set', 'mkdir', 'rmdir', 'ls' ];
+		var funcs = ['rm', 'get', 'set', 'mkdir', 'rmdir', 'ls', 'all' ];
 		funcs.forEach(function(f)
 		{
 			furthermore.must.have.property(f);

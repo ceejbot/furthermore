@@ -72,6 +72,34 @@ exports.get = function get(key, callback)
 	});
 };
 
+function toObject(node)
+{
+	var r = {};
+	if (!node.nodes) return r;
+
+	node.nodes.forEach(function(childNode)
+	{
+		var split = childNode.key.split('/');
+		var key = split[split.length - 1];
+
+		if (childNode.dir)
+			r[key] = toObject(childNode);
+		else
+			r[key] = childNode.value;
+	});
+
+	return r;
+}
+
+exports.all = function all(callback)
+{
+	etcd.get('/', { recursive: true }, function(err, reply)
+	{
+		if (err) return callback(err);
+		callback(null, toObject(reply.node));
+	});
+};
+
 exports.mkdir = function mkdir(dir, callback)
 {
 	etcd.mkdir(dir, { recursive: true }, function(err, reply)
