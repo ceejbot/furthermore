@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+var updater = require('update-notifier'),
+	pkg     = require('./package.json');
+
+updater({pkg}).notify();
+
 var yargs = require('yargs')
 	.usage('furthermore: manipulate keys on a remote etcd server')
 	.example('furthermore ls /deploys')

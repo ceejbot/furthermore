@@ -17,6 +17,7 @@
     "node-etcd": "~4.2.1",
     "rc": "~1.1.6",
     "require-directory": "~2.1.1",
+    "update-notifier": "~0.6.3",
     "yargs": "~4.6.0"
   },
   "devDependencies": {
