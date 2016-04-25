@@ -3,7 +3,7 @@
 var updater = require('update-notifier'),
 	pkg     = require('./package.json');
 
-updater(pkg).notify();
+updater({pkg: pkg}).notify();
 
 var yargs = require('yargs')
 	.usage('furthermore: manipulate keys on a remote etcd server')
