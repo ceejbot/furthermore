@@ -17,7 +17,8 @@ var yargs = require('yargs')
 	.option('env', {
 		alias: 'e',
 		description: 'which etcd host group to use',
-		default: 'default'
+		default: 'default',
+		global: true
 	})
 	.version()
 	.help()
