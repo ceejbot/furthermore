@@ -32,6 +32,7 @@ furthermore: manipulate keys on a remote etcd server
 
 Commands:
 get <key>          get the value for a key; wrap the key in // to treat it as a regexp
+grep <pattern>     search for values matching the given regexp pattern
 import <json>      import key/value pairs from a json file & set them in etcd
 ls <dir>           get a directory listing
 mkdir <dir>        create the named directory, recursively
