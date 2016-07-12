@@ -7,10 +7,13 @@ var
 exports.setConfig = function setConfig(env)
 {
 	var configset = rc[env] || rc;
-	etcd = new Etcd(
-		Array.isArray(configset.hosts) ? configset.hosts : [configset.hosts],
-		configset.ssl ? true : undefined
-	);
+	if (!Array.isArray(configset.hosts)) configset.hosts = [configset.hosts];
+	configset.hosts = configset.hosts.map(function(h)
+	{
+		return (configset.ssl ? 'https://' : 'http://') + h;
+	});
+
+	etcd = new Etcd(configset.hosts);
 	exports.etcd = etcd;
 };
 
@@ -132,7 +135,7 @@ exports.ls = function ls(dir, callback)
 	etcd.get(dir, function(err, reply)
 	{
 		if (err) return callback(err, []);
-		if (!reply.node.nodes) return callback(null, []);
+		if (!reply.node || !reply.node.nodes) return callback(null, []);
 		callback(null, cleanDir(dir, reply.node.nodes));
 	});
 };
