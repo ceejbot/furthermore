@@ -1,4 +1,5 @@
 var
+	chalk       = require('chalk'),
 	furthermore = require('../index')
 	;
 
