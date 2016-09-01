@@ -6,7 +6,7 @@ var
 
 function builder(yargs)
 {
-	return yargs.demand(2, 'need a pattern to grep for e.g. foo or /foo/');
+	return yargs.demand(1, 'need a pattern to grep for e.g. foo or /foo/');
 }
 
 function handler(argv)
