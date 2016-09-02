@@ -5,7 +5,7 @@ var updater = require('update-notifier'),
 
 updater({pkg: pkg}).notify();
 
-var yargs = require('yargs')
+require('yargs')
 	.usage('furthermore: manipulate keys on a remote etcd server')
 	.example('furthermore ls /deploys')
 	.example('furthermore mkdir /deploys/website')
@@ -20,12 +20,10 @@ var yargs = require('yargs')
 		default: 'default',
 		global: true
 	})
+	.commandDir('commands')
+	.recommendCommands()
+	.demand(1, 'Need a command. Choose from our fine selection above.')
 	.version()
 	.help()
+	.argv
 	;
-
-var requireDirectory = require('require-directory'),
-	commands = requireDirectory(module, './commands');
-Object.keys(commands).forEach(function(c) { yargs.command(commands[c]); });
-
-yargs.argv;
