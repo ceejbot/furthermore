@@ -26,7 +26,7 @@
     "eslint": "~3.4.0",
     "mocha": "~3.0.1",
     "must": "~0.13.2",
-    "nyc": "~8.1.0",
+    "nyc": "~8.3.0",
     "sinon": "~1.17.5"
   },
   "homepage": "https://github.com/ceejbot/furthermore#readme",
