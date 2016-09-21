@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "coveralls": "~2.11.12",
-    "eslint": "~3.4.0",
+    "eslint": "~3.5.0",
     "mocha": "~3.0.1",
     "must": "~0.13.2",
     "nyc": "~8.3.0",
