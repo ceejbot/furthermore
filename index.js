@@ -19,7 +19,7 @@ exports.setConfig = function setConfig(env)
 
 function cleanDir(dir, nodes)
 {
-	var patt = new RegExp('^\/?' + dir + '\/?');
+	var patt = new RegExp('^/?' + dir + '/?');
 
 	var result = [];
 	nodes.forEach(function(child)
@@ -49,7 +49,7 @@ exports.getMatch = function getMatch(target, callback)
 	if (lastSlash >= 0)
 		dir = target.slice(0, lastSlash);
 
-	etcd.get(dir, {recursive : true }, function(err, reply)
+	etcd.get(dir, { recursive: true }, function(err, reply)
 	{
 		if (err) return callback(err);
 		if (!reply.node.nodes) return callback(null, []);

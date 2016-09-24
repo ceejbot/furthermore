@@ -22,10 +22,12 @@
   "devDependencies": {
     "coveralls": "~2.11.12",
     "eslint": "~3.5.0",
+    "eslint-config-ceejbot": "~1.0.0",
     "mocha": "~3.0.1",
     "must": "~0.13.2",
     "nyc": "~8.3.0",
-    "sinon": "~1.17.5"
+    "sinon": "~1.17.5",
+    "xo": "~0.16.0"
   },
   "homepage": "https://github.com/ceejbot/furthermore#readme",
   "keywords": [
@@ -41,7 +43,10 @@
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint .",
-    "test": "nyc mocha -R spec",
+    "test": "xo && nyc mocha -R spec",
     "travis": "npm run lint && npm test"
+  },
+  "xo": {
+    "extends": "eslint-config-ceejbot"
   }
 }
