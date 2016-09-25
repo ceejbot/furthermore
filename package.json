@@ -42,8 +42,8 @@
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "eslint .",
-    "test": "xo && nyc mocha -R spec",
+    "lint": "xo",
+    "test": "nyc mocha -R spec",
     "travis": "npm run lint && npm test"
   },
   "xo": {
