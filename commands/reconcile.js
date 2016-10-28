@@ -19,15 +19,13 @@ function handler(argv)
 
 	fs.readFile(argv.json, 'utf8', function(err, data)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		var input = safeParse(data);
 
 		furthermore.all(function(err, current)
 		{
-			if (err)
-				return console.log(chalk.red('error: ') + err.message);
+			furthermore._handleError(err);
 
 			var missing = [];
 			var different = [];

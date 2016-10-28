@@ -18,8 +18,7 @@ function handler(argv)
 
 	fs.readFile(argv.json, 'utf8', function(err, data)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		var input = safeParse(data);
 
@@ -28,8 +27,7 @@ function handler(argv)
 		{
 			furthermore.set(k, input[k], function(err, results)
 			{
-				if (err)
-					return console.log(chalk.red('error: ') + err.message);
+				furthermore._handleError(err);
 
 				console.log(chalk.bold(results.key) + chalk.yellow(' ➜ ') + chalk.blue(results.value));
 			});

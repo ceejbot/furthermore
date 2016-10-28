@@ -10,8 +10,7 @@ function handler(argv)
 	furthermore.setConfig(argv.env);
 	furthermore.set(argv.key, argv.value, function(err, results)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		console.log(chalk.bold(results.key) + chalk.yellow(' ➜ ') + chalk.blue(results.value));
 	});

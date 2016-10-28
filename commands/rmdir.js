@@ -10,11 +10,7 @@ function handler(argv)
 	furthermore.setConfig(argv.env);
 	furthermore.rmdir(argv.dir, function(err, results)
 	{
-		if (err)
-		{
-			console.error(chalk.red('error: ') + err.message);
-			process.exit(1);
-		}
+		furthermore._handleError(err);
 
 		console.log(chalk.bold(results.key + '/') + chalk.red(' ✘ removed'));
 	});
