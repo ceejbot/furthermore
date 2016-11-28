@@ -16,7 +16,7 @@
     "node-etcd": "~5.0.3",
     "rc": "~1.1.6",
     "update-notifier": "~1.0.2",
-    "visit-values": "^1.0.4",
+    "visit-values": "^2.0.0",
     "yargs": "~6.3.0"
   },
   "devDependencies": {
