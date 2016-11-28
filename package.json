@@ -1,7 +1,7 @@
 {
   "name": "furthermore",
   "description": "add and set etcd keys conveniently",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": "C J Silverio <ceej@npmjs.com>",
   "bin": {
     "furthermore": "cli.js",
