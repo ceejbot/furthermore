@@ -9,7 +9,7 @@ function builder(yargs) {}
 function safeParse(data)
 {
 	try { return JSON.parse(data); }
-	catch (ex) { return data; }
+	catch (err) { return data; }
 }
 
 function handler(argv)

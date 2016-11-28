@@ -10,7 +10,7 @@ function builder(yargs) {}
 function safeParse(data)
 {
 	try { return JSON.parse(data); }
-	catch (ex) { return data; }
+	catch (err) { return data; }
 }
 
 function handler(argv)
@@ -47,14 +47,14 @@ function handler(argv)
 			});
 
 			var diffs = false;
-			if (missing.length)
+			if (missing.length > 0)
 			{
 				console.log(chalk.red('missing values:'));
 				console.log(columns(missing.sort()));
 				diffs = true;
 			}
 
-			if (different.length)
+			if (different.length > 0)
 			{
 				console.log('');
 				console.log(chalk.blue('keys with differing values:'));
@@ -62,7 +62,7 @@ function handler(argv)
 				diffs = true;
 			}
 
-			if (Object.keys(current).length)
+			if (Object.keys(current).length > 0)
 			{
 				console.log('');
 				console.log(chalk.yellow('extra values:'));

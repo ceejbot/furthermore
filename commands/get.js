@@ -15,7 +15,7 @@ function getMatch(key)
 		if (err)
 			return console.log(chalk.red('error: ') + err.message);
 
-		if (!Object.keys(results).length)
+		if (Object.keys(results).length === 0)
 		{
 			console.log(chalk.bold(key) + chalk.yellow(' has no matches.'));
 			return;

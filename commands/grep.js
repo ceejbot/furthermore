@@ -35,7 +35,7 @@ function handler(argv)
 			}
 		});
 
-		if (lines.length)
+		if (lines.length > 0)
 		{
 			lines.sort();
 			console.log(chalk.bold(pattern) + chalk.yellow(' matches:'));
