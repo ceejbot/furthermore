@@ -4,7 +4,14 @@ var
 	furthermore = require('../index')
 	;
 
-function builder() {}
+function builder(yargs)
+{
+	return yargs.option('raw', {
+		alias: 'r',
+		desc: 'Write just the raw value to stdout?',
+		type: 'boolean'
+	});
+}
 
 function getMatch(key)
 {
@@ -51,7 +58,16 @@ function handler(argv)
 			console.log(columns(children));
 		}
 		else
-			console.log(chalk.bold(results.key) + chalk.yellow(' == ') + chalk.blue(results.value));
+		{
+			if (argv.raw)
+			{
+				process.stdout.write(results.value);
+			}
+			else
+			{
+				console.log(chalk.bold(results.key) + chalk.yellow(' == ') + chalk.blue(results.value));
+			}
+		}
 	});
 }
 
