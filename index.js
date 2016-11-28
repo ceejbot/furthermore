@@ -1,6 +1,7 @@
 var
-	Etcd = require('node-etcd'),
-	rc   = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, []),
+	chalk = require('chalk'),
+	Etcd  = require('node-etcd'),
+	rc    = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, []),
 	etcd
 	;
 
@@ -138,4 +139,11 @@ exports.ls = function ls(dir, callback)
 		if (!reply.node || !reply.node.nodes) return callback(null, []);
 		callback(null, cleanDir(dir, reply.node.nodes));
 	});
+};
+
+exports._handleError = function _handleError(err)
+{
+	if (!err) return;
+	console.error(chalk.red('error: ') + err.message);
+	process.exit(1);
 };

@@ -1,5 +1,4 @@
 var
-	chalk       = require('chalk'),
 	furthermore = require('../index')
 	;
 
@@ -11,8 +10,7 @@ function handler(argv)
 
 	furthermore.all(function(err, current)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		// We have opinions about our data formats.
 		var keys = Object.keys(current).sort();

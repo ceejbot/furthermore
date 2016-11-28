@@ -12,8 +12,7 @@ function handler(argv)
 
 	furthermore.ls(argv.dir, function(err, results)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		var dirname = argv.dir + (/\/$/.test(argv.dir) ? '' : '/');
 		console.log(chalk.bold(dirname) + chalk.yellow(' directory listing:'));

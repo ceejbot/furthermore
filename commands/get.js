@@ -19,8 +19,7 @@ function getMatch(key)
 
 	furthermore.getMatch(key, function(err, results)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		if (Object.keys(results).length === 0)
 		{
@@ -48,8 +47,7 @@ function handler(argv)
 
 	furthermore.get(argv.key, function(err, results, children)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		if (results.dir)
 		{

@@ -22,8 +22,7 @@ function handler(argv)
 
 	furthermore.all(function(err, all)
 	{
-		if (err)
-			return console.log(chalk.red('error: ') + err.message);
+		furthermore._handleError(err);
 
 		var lines = [];
 
