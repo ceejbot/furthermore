@@ -20,13 +20,13 @@
     "yargs": "~7.1.0"
   },
   "devDependencies": {
-    "coveralls": "~2.11.15",
+    "coveralls": "~2.13.0",
     "eslint-config-ceejbot": "~1.0.3",
     "mocha": "~3.3.0",
-    "must": "~0.13.2",
-    "nyc": "~10.1.0",
-    "sinon": "~1.17.6",
-    "xo": "~0.17.1"
+    "must": "~0.13.4",
+    "nyc": "~10.2.0",
+    "sinon": "~2.1.0",
+    "xo": "~0.18.1"
   },
   "homepage": "https://github.com/ceejbot/furthermore#readme",
   "keywords": [
