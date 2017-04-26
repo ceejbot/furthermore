@@ -17,7 +17,7 @@ function getMatch(key)
 {
 	key = key.replace(/^\/(.*)\/$/, '$1');
 
-	furthermore.getMatch(key, function(err, results)
+	furthermore.getMatch(key, (err, results) =>
 	{
 		furthermore._handleError(err);
 
@@ -29,7 +29,7 @@ function getMatch(key)
 
 		console.log(chalk.bold(key) + chalk.yellow(' matches:'));
 		var lines = [];
-		results.forEach(function(r)
+		results.forEach(r =>
 		{
 			lines.push(chalk.bold(r.key) + chalk.yellow(' == ') + chalk.blue(r.value));
 		});
@@ -45,7 +45,7 @@ function handler(argv)
 	if (/^\/.*\/$/.test(argv.key))
 		return getMatch(argv.key);
 
-	furthermore.get(argv.key, function(err, results, children)
+	furthermore.get(argv.key, (err, results, children) =>
 	{
 		furthermore._handleError(err);
 
@@ -72,6 +72,6 @@ function handler(argv)
 module.exports = {
 	command: 'get <key>',
 	describe: 'get the value for a key; wrap the key in // to treat it as a regexp',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

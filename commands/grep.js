@@ -20,13 +20,13 @@ function handler(argv)
 
 	var regexp = new RegExp(pattern);
 
-	furthermore.all(function(err, all)
+	furthermore.all((err, all) =>
 	{
 		furthermore._handleError(err);
 
 		var lines = [];
 
-		visit(all, function(value, key, parent)
+		visit(all, (value, key, parent) =>
 		{
 			if (regexp.test(value))
 			{
@@ -50,6 +50,6 @@ function handler(argv)
 module.exports = {
 	command: 'grep <pattern>',
 	describe: 'search for values matching the given regexp pattern',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

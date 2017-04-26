@@ -16,16 +16,16 @@ function handler(argv)
 {
 	furthermore.setConfig(argv.env);
 
-	fs.readFile(argv.json, 'utf8', function(err, data)
+	fs.readFile(argv.json, 'utf8', (err, data) =>
 	{
 		furthermore._handleError(err);
 
 		var input = safeParse(data);
 
 		var keys = Object.keys(input).sort();
-		keys.forEach(function(k)
+		keys.forEach(k =>
 		{
-			furthermore.set(k, input[k], function(err, results)
+			furthermore.set(k, input[k], (err, results) =>
 			{
 				furthermore._handleError(err);
 
@@ -38,6 +38,6 @@ function handler(argv)
 module.exports = {
 	command: 'import <json>',
 	describe: 'import key/value pairs from a json file & set them in etcd',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

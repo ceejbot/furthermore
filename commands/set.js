@@ -8,7 +8,7 @@ function builder() {}
 function handler(argv)
 {
 	furthermore.setConfig(argv.env);
-	furthermore.set(argv.key, argv.value, function(err, results)
+	furthermore.set(argv.key, argv.value, (err, results) =>
 	{
 		furthermore._handleError(err);
 
@@ -19,6 +19,6 @@ function handler(argv)
 module.exports = {
 	command: 'set <key> <value>',
 	describe: 'set a key to a new value',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

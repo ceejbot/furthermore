@@ -8,7 +8,7 @@ function builder() {}
 function handler(argv)
 {
 	furthermore.setConfig(argv.env);
-	furthermore.mkdir(argv.dir, function(err, results)
+	furthermore.mkdir(argv.dir, (err, results) =>
 	{
 		furthermore._handleError(err);
 
@@ -19,6 +19,6 @@ function handler(argv)
 module.exports = {
 	command: 'mkdir <dir>',
 	describe: 'create the named directory, recursively',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

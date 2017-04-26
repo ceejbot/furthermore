@@ -8,19 +8,19 @@ var
 	furthermore = require('./index')
 	;
 
-describe('furthermore', function()
+describe('furthermore', () =>
 {
-	it('exports a bunch of functions', function()
+	it('exports a bunch of functions', () =>
 	{
 		var funcs = ['rm', 'get', 'set', 'mkdir', 'rmdir', 'ls', 'all'];
-		funcs.forEach(function(f)
+		funcs.forEach(f =>
 		{
 			furthermore.must.have.property(f);
 			furthermore[f].must.be.a.function();
 		});
 	});
 
-	it('exports a config function that reads rc', function()
+	it('exports a config function that reads rc', () =>
 	{
 		furthermore.must.have.property('setConfig');
 		furthermore.setConfig.must.be.a.function();
@@ -30,12 +30,12 @@ describe('furthermore', function()
 		furthermore.etcd.must.be.instanceof(Etcd);
 	});
 
-	it('rm() calls etcd.del()', function(done)
+	it('rm() calls etcd.del()', done =>
 	{
 		var spy = sinon.stub(furthermore.etcd, 'del');
 		spy.yields(null, {node: 'yo'});
 
-		furthermore.rm('key', function(err, data)
+		furthermore.rm('key', (err, data) =>
 		{
 			demand(err).not.exist();
 			data.must.equal('yo');
@@ -44,13 +44,13 @@ describe('furthermore', function()
 		});
 	});
 
-	it('get() calls etcd.get()', function(done)
+	it('get() calls etcd.get()', done =>
 	{
 		var mock = { dir: false, key: 'key', value: 'value' };
 		var spy = sinon.stub(furthermore.etcd, 'get');
 		spy.yields(null, { node: mock });
 
-		furthermore.get('key', function(err, data)
+		furthermore.get('key', (err, data) =>
 		{
 			demand(err).not.exist();
 			spy.calledWith('key').must.be.true();
@@ -60,13 +60,13 @@ describe('furthermore', function()
 		});
 	});
 
-	it('set() calls etcd.set()', function(done)
+	it('set() calls etcd.set()', done =>
 	{
 		var mock = { dir: false, key: 'key', value: 'value' };
 		var spy = sinon.stub(furthermore.etcd, 'set');
 		spy.yields(null, { node: mock });
 
-		furthermore.set('key', 'value', function(err, data)
+		furthermore.set('key', 'value', (err, data) =>
 		{
 			demand(err).not.exist();
 			spy.calledWith('key', 'value').must.be.true();
@@ -76,13 +76,13 @@ describe('furthermore', function()
 		});
 	});
 
-	it('mkdir() calls etcd.mkdir()', function(done)
+	it('mkdir() calls etcd.mkdir()', done =>
 	{
 		var mock = { key: '/foo/bar', dir: true, modifiedIndex: 21, createdIndex: 21 };
 		var spy = sinon.stub(furthermore.etcd, 'mkdir');
 		spy.yields(null, { node: mock });
 
-		furthermore.mkdir('/foo/bar', function(err, data)
+		furthermore.mkdir('/foo/bar', (err, data) =>
 		{
 			demand(err).not.exist();
 			spy.calledWith('/foo/bar').must.be.true();
@@ -92,7 +92,7 @@ describe('furthermore', function()
 		});
 	});
 
-	it('rmdir() calls etcd.rmdir()', function(done)
+	it('rmdir() calls etcd.rmdir()', done =>
 	{
 		var mock = {
 			action: 'delete',
@@ -113,7 +113,7 @@ describe('furthermore', function()
 		var spy = sinon.stub(furthermore.etcd, 'rmdir');
 		spy.yields(null, { node: mock });
 
-		furthermore.rmdir('foo/bar', function(err, data)
+		furthermore.rmdir('foo/bar', (err, data) =>
 		{
 			demand(err).not.exist();
 			spy.calledWith('foo/bar').must.be.true();

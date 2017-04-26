@@ -8,7 +8,7 @@ function builder() {}
 function handler(argv)
 {
 	furthermore.setConfig(argv.env);
-	furthermore.rm(argv.key, function(err, results)
+	furthermore.rm(argv.key, (err, results) =>
 	{
 		furthermore._handleError(err);
 
@@ -19,6 +19,6 @@ function handler(argv)
 module.exports = {
 	command: 'rm <key>',
 	describe: 'remove a key',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

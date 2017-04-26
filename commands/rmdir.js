@@ -8,7 +8,7 @@ function builder() {}
 function handler(argv)
 {
 	furthermore.setConfig(argv.env);
-	furthermore.rmdir(argv.dir, function(err, results)
+	furthermore.rmdir(argv.dir, (err, results) =>
 	{
 		furthermore._handleError(err);
 
@@ -19,6 +19,6 @@ function handler(argv)
 module.exports = {
 	command: 'rmdir <dir>',
 	describe: 'remove the named directory',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

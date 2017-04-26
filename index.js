@@ -9,7 +9,7 @@ exports.setConfig = function setConfig(env)
 {
 	var configset = rc[env] || rc;
 	if (!Array.isArray(configset.hosts)) configset.hosts = [configset.hosts];
-	configset.hosts = configset.hosts.map(function(h)
+	configset.hosts = configset.hosts.map(h =>
 	{
 		return (configset.ssl ? 'https://' : 'http://') + h;
 	});
@@ -23,7 +23,7 @@ function cleanDir(dir, nodes)
 	var patt = new RegExp('^/?' + dir + '/?');
 
 	var result = [];
-	nodes.forEach(function(child)
+	nodes.forEach(child =>
 	{
 		var k = child.key.replace(patt, '');
 		if (child.dir) k += '/';
@@ -33,9 +33,9 @@ function cleanDir(dir, nodes)
 	return result;
 }
 
-exports.rm = function del(key, callback)
+exports.rm = function rm(key, callback)
 {
-	etcd.del(key, function(err, reply)
+	etcd.del(key, (err, reply) =>
 	{
 		if (err) return callback(err);
 		callback(null, reply.node);
@@ -50,13 +50,13 @@ exports.getMatch = function getMatch(target, callback)
 	if (lastSlash >= 0)
 		dir = target.slice(0, lastSlash);
 
-	etcd.get(dir, { recursive: true }, function(err, reply)
+	etcd.get(dir, { recursive: true }, (err, reply) =>
 	{
 		if (err) return callback(err);
 		if (!reply.node.nodes) return callback(null, []);
 
 		var results = [];
-		reply.node.nodes.forEach(function(n)
+		reply.node.nodes.forEach(n =>
 		{
 			if (pattern.test(n.key)) results.push(n);
 		});
@@ -67,7 +67,7 @@ exports.getMatch = function getMatch(target, callback)
 
 exports.get = function get(key, callback)
 {
-	etcd.get(key, { recursive: true }, function(err, reply)
+	etcd.get(key, { recursive: true }, (err, reply) =>
 	{
 		if (err) return callback(err);
 		if (reply.node.dir)
@@ -81,7 +81,7 @@ function toObject(node)
 	var r = {};
 	if (!node.nodes) return r;
 
-	node.nodes.forEach(function(childNode)
+	node.nodes.forEach(childNode =>
 	{
 		var split = childNode.key.split('/');
 		var key = split[split.length - 1];
@@ -97,7 +97,7 @@ function toObject(node)
 
 exports.all = function all(callback)
 {
-	etcd.get('/', { recursive: true }, function(err, reply)
+	etcd.get('/', { recursive: true }, (err, reply) =>
 	{
 		if (err) return callback(err);
 		callback(null, toObject(reply.node));
@@ -106,7 +106,7 @@ exports.all = function all(callback)
 
 exports.mkdir = function mkdir(dir, callback)
 {
-	etcd.mkdir(dir, { recursive: true }, function(err, reply)
+	etcd.mkdir(dir, { recursive: true }, (err, reply) =>
 	{
 		if (err) return callback(err);
 		callback(null, reply.node);
@@ -115,7 +115,7 @@ exports.mkdir = function mkdir(dir, callback)
 
 exports.rmdir = function rmdir(dir, callback)
 {
-	etcd.rmdir(dir, function(err, reply)
+	etcd.rmdir(dir, (err, reply) =>
 	{
 		if (err) return callback(err);
 		callback(null, reply.node);
@@ -124,7 +124,7 @@ exports.rmdir = function rmdir(dir, callback)
 
 exports.set = function set(key, value, callback)
 {
-	etcd.set(key, value, function(err, reply)
+	etcd.set(key, value, (err, reply) =>
 	{
 		if (err) return callback(err);
 		callback(null, reply.node);
@@ -133,7 +133,7 @@ exports.set = function set(key, value, callback)
 
 exports.ls = function ls(dir, callback)
 {
-	etcd.get(dir, function(err, reply)
+	etcd.get(dir, (err, reply) =>
 	{
 		if (err) return callback(err, []);
 		if (!reply.node || !reply.node.nodes) return callback(null, []);

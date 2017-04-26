@@ -8,14 +8,14 @@ function handler(argv)
 {
 	furthermore.setConfig(argv.env);
 
-	furthermore.all(function(err, current)
+	furthermore.all((err, current) =>
 	{
 		furthermore._handleError(err);
 
 		// We have opinions about our data formats.
 		var keys = Object.keys(current).sort();
 		var output = {};
-		keys.forEach(function(k) { output[k] = current[k]; });
+		keys.forEach(k => { output[k] = current[k]; });
 		console.log(JSON.stringify(output, null, 4));
 	});
 }
@@ -23,6 +23,6 @@ function handler(argv)
 module.exports = {
 	command: 'backup',
 	describe: 'emit all keys in the given db as a json object',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };

@@ -5,7 +5,7 @@ var
 	pkg     = require('./package.json')
 	;
 
-updater({pkg: pkg}).notify();
+updater({pkg}).notify();
 
 require('yargs')
 	.usage('furthermore: manipulate keys on a remote etcd server')

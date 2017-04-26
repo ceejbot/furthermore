@@ -17,20 +17,20 @@ function handler(argv)
 {
 	furthermore.setConfig(argv.env);
 
-	fs.readFile(argv.json, 'utf8', function(err, data)
+	fs.readFile(argv.json, 'utf8', (err, data) =>
 	{
 		furthermore._handleError(err);
 
 		var input = safeParse(data);
 
-		furthermore.all(function(err, current)
+		furthermore.all((err, current) =>
 		{
 			furthermore._handleError(err);
 
 			var missing = [];
 			var different = [];
 
-			Object.keys(input).forEach(function(k)
+			Object.keys(input).forEach(k =>
 			{
 				if (current.hasOwnProperty(k))
 				{
@@ -77,6 +77,6 @@ function handler(argv)
 module.exports = {
 	command: 'reconcile <json>',
 	describe: 'report how the keys in the given json file differ from the keys in etcd',
-	builder: builder,
-	handler: handler
+	builder,
+	handler
 };
