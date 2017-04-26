@@ -25,7 +25,7 @@
     "mocha": "~3.3.0",
     "must": "~0.13.2",
     "nyc": "~10.1.0",
-    "sinon": "~1.17.6",
+    "sinon": "~2.0.0",
     "xo": "~0.17.1"
   },
   "homepage": "https://github.com/ceejbot/furthermore#readme",
