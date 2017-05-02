@@ -1,5 +1,7 @@
 # furthermore
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ceejbot/furthermore.svg)](https://greenkeeper.io/)
+
 Interim censeo, Carthago delenda est. She is a menace to Rome.
 
 [![on npm](http://img.shields.io/npm/v/furthermore.svg?style=flat)](https://www.npmjs.org/package/furthermore)  [![Tests](http://img.shields.io/travis/ceejbot/furthermore.svg?style=flat)](http://travis-ci.org/ceejbot/furthermore) [![Coverage Status](https://coveralls.io/repos/github/ceejbot/furthermore/badge.svg?branch=master)](https://coveralls.io/github/ceejbot/furthermore?branch=master) [![Dependencies](http://img.shields.io/david/ceejbot/furthermore.svg?style=flat)](https://david-dm.org/ceejbot/furthermore)
