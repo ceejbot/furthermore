@@ -1,7 +1,7 @@
 var
-	chalk = require('chalk'),
-	Etcd  = require('node-etcd'),
-	rc    = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, []),
+	chalk  = require('chalk'),
+	etcdjs = require('etcdjs'),
+	rc     = require('rc')('etcd', { hosts: '127.0.0.1:4001', ssl: false }, []),
 	etcd
 	;
 
@@ -14,7 +14,7 @@ exports.setConfig = function setConfig(env)
 		return (configset.ssl ? 'https://' : 'http://') + h;
 	});
 
-	etcd = new Etcd(configset.hosts);
+	etcd = etcdjs(configset.hosts);
 	exports.etcd = etcd;
 };
 
