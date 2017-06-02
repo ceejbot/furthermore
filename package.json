@@ -17,16 +17,16 @@
     "rc": "~1.2.1",
     "update-notifier": "~2.1.0",
     "visit-values": "^2.0.0",
-    "yargs": "~7.1.0"
+    "yargs": "~8.0.1"
   },
   "devDependencies": {
-    "coveralls": "~2.13.0",
+    "coveralls": "~2.13.1",
     "eslint-config-ceejbot": "~1.0.3",
-    "mocha": "~3.3.0",
+    "mocha": "~3.4.2",
     "must": "~0.13.4",
-    "nyc": "~10.3.0",
-    "sinon": "~2.2.0",
-    "xo": "~0.18.1"
+    "nyc": "~11.0.1",
+    "sinon": "~2.3.2",
+    "xo": "~0.18.2"
   },
   "homepage": "https://github.com/ceejbot/furthermore#readme",
   "keywords": [
