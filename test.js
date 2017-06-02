@@ -3,7 +3,7 @@
 
 var
 	demand      = require('must'),
-	Etcd        = require('node-etcd'),
+	etcdjs      = require('etcdjs'),
 	sinon       = require('sinon'),
 	furthermore = require('./index')
 	;
@@ -27,7 +27,7 @@ describe('furthermore', () =>
 		demand(furthermore.etcd).be.undefined();
 		furthermore.setConfig();
 		furthermore.etcd.must.be.an.object();
-		furthermore.etcd.must.be.instanceof(Etcd);
+		furthermore.etcd.must.be.instanceof(etcdjs);
 	});
 
 	it('rm() calls etcd.del()', done =>
