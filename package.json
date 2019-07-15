@@ -17,7 +17,7 @@
     "rc": "~1.2.1",
     "update-notifier": "~2.1.0",
     "visit-values": "^2.0.0",
-    "yargs": "~8.0.1"
+    "yargs": "~13.3.0"
   },
   "devDependencies": {
     "coveralls": "~2.13.1",
