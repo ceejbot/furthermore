@@ -4,10 +4,7 @@ var
 	visit       = require('visit-values')
 	;
 
-function builder(yargs)
-{
-	return yargs.demand(1, 'need a pattern to grep for e.g. foo or /foo/');
-}
+function builder(yargs) {}
 
 function handler(argv)
 {
